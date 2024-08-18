@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Coda:wght@400;800&family=Playwrite+HR+Lijeva:wght@100..400&display=swap');
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.font2 {
+    font-family: "Playwrite HR Lijeva", cursive !important;
+    font-optical-sizing: auto;
+}
+
+.font3 {
+    font-family: "Coda", system-ui !important;
+    font-style: normal;
+}
+
+.font4 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    font-optical-sizing: auto;
+}
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+li,
+a,
+button,
+p,
+input {
+    list-style: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a {
+    color: #fff;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.colortext1 {
+    color: #701b37;
+}
+
+.colortext2 {
+    color: #fff;
+}
+
+.colortext3 {
+    color: black;
+}
+
+.bgcolor1 {
+    background-color: #701b37;
+}
+
+.bgcolor2 {
+    background-color: #ffffff;
+}
+
+.bgcolor3 {
+    background-color: #ece3e7;
+}
+
+.mn-sides {
+    width: 100vw;
+    height: 100vh;
+}
+
+.side {
+    width: 50vw;
+    height: 100vh;
+
+}
+
+.side1 {
+    background-image: url(../img/sheph.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    justify-content: flex-end;
+    align-items: flex-end;
+    opacity: 0.3;
+}
+
+.textcont {
+    position: absolute;
+    top: 500px;
+    left: 250px;
+    width: 30vw;
+    height: 24vh;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.textcont p {
+    font-size: 14px;
+}
+
+.hd-text {
+    width: 65%;
+    line-height: 25px;
+}
+
+.contact {
+    width: 65%;
+    justify-content: space-between;
+}
+
+.imagelinks {
+    width: 10%;
+    height: 3vh;
+    border-radius: 5px;
+}
+
+.imagelinks2 {
+    width: 17%;
+    height: 6vh;
+    padding: 10px;
+    border-radius: 3vh;
+    background-color: #ffffff;
+}
+.animate{
+    transform: translateX(70px);
+
+    animation: 0.6s move linear forwards;
+}
+@keyframes move{
+    to{
+        transform: translateX(0);
+    }
+}
+.side2 p {
+    font-size: 18px;
+    text-align: right;
+    width: 70%;
+}
+
+.top {
+    align-items: flex-start;
+    width: 60%;
+    height: 25%;
+    justify-content: space-between;
+}
+
+.side2 .top p:hover {
+    transition: .5s;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.line {
+    width: 60%;
+    height: 30%;
+    justify-content: space-between;
+}
+
+.line p {
+    width: 70%;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.imglogo {
+    width: auto;
+    height: 100%;
+}
+
+.img2 {
+    width: 30px;
+    height: auto;
+    padding-left: 5px;
+}
+
+.wel {
+    width: 60%;
+    text-align: left;
+    height: 30%;
+}
+
+.wel h2 {
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+
+.lining {
+    width: 50px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: #701b37;
+}
+
+.allinput {
+    width: 60%;
+    height: 40%;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.allinput p {
+    margin-top: 10px;
+    width: 80%;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.allinput span:hover {
+    transition: .5s;
+    text-decoration: underline;
+    color: #701b37;
+    font-weight: 700;
+}
+
+.allinput p span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.input {
+    width: 100%;
+    height: 60%;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.input input {
+    width: 80%;
+    height: 20%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #ecebeb;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+.input input:hover {
+    transition: .5s;
+    color: rgb(44, 43, 43);
+    font-weight: 600;
+}
+
+.input p {
+    width:80%;
+    margin-bottom: -40px;
+    text-align: right;
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.input p span {
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.input p span:hover {
+    transition: .5s;
+    color: red;
+    font-weight: 700;
+}
+
+
+.btn {
+    width: 80%;
+    height: 10%;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.329);
+}
+
+.btn:hover {
+    transition: .5s;
+    background-color: #88575f;
+    color: #701b37;
+}
+
+
+
+.side3 p {
+    width: 60%;
+    text-align: left;
+}
+
+/* .input select {
+    width: 80%;
+    height: 20%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #ecebeb;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 10px;
+    overflow: scroll;
+    border: none;
+} */
+ .side3 .input p{
+    width: 100%;
+    height: 30%;
+    font-size: 20px;
+    color: #a7a3a3;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+ }
+select {
+    width: 100%;
+    height: 50%;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #701b37;
+    box-shadow: 0 0 5px rgba(128, 47, 67, 0.5);
+}
+
+.select-container {
+    position: relative;
+    width: 80%;
+    height: 23%;
+}
+
+/* Adding a custom arrow icon */
+.select-container::after {
+    content: '';
+    position: absolute;
+    top: 78%;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+select option:hover {
+    background-color: #88575f;
+    padding: 20px;
+}
+
+.side3 .allinput {
+    width: 60%;
+    height: 55%;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.signup {
+    display: none;
+}
+/* .continue {
+    display: none;
+} */
+.continue .input2 p{
+  line-height: -10px;
+}
+.login-page {
+    display: none;
+}
