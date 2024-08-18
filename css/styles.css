@@ -393,3 +393,122 @@ select option:hover {
 .login-page {
     display: none;
 }
+
+.userhd{
+    margin:20px auto;
+    width: 80%;
+    height:80px;
+    justify-content: space-around;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.274);
+    padding: 5px;
+}
+.userpro{
+    width: 48%;
+    height: 100%;
+    gap: 20px;
+    font-size: 25px;
+    font-weight: 700;
+    justify-content:flex-start;
+   
+}
+
+.pro{
+    justify-content: flex-end;
+}
+.pro p{
+    background-color: rgb(167, 167, 230);
+    width: 40%;
+    padding: 5px;
+    border-radius: 30px;
+    justify-content: space-around;
+}
+.pro p span{
+    padding: 2px;
+    text-align: center;
+    border-radius: 30px;
+    width: 50%;
+    background-color: rgb(209, 209, 241);
+}
+.imagepro{
+    width: 15%;
+    height: 90%;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius:70px;
+}
+.imagelg{
+    width: 13%;
+    height: 50%;
+    scale: 0.8;
+}
+.imagelg:hover{
+    transition: 0.5s;
+    scale: 1;
+}
+.bginfo{
+    width: 80%;
+    height:400px;
+    margin: auto;
+    background-image: url(../img/bgpart.jpg);
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+.info{
+    width: 95%;
+    height:100%;
+    align-items: flex-start;
+    gap: 10px;
+    margin: auto;
+}
+.info p {
+    font-size: 25px;
+    font-weight: 300;
+}
+.amount{
+    height:10%;
+    width: 50%;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+.amount .currentamount{
+ font-size: 40px;
+ font-weight: 500;
+}
+.imgamount{
+    height:100%;
+    width: 10%;
+    margin-right: 2px;
+}
+.imghide{
+    height:60%;
+    width: 7%;
+    margin-left: 20px;
+}
+.acctnumdiv{
+    height:10%;
+    width: 50%;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+.allbtn{
+    height:40%;
+    width: 100%;
+    justify-content:space-between;
+    
+}
+.buttin{
+    height:40%;
+    width: 40%;
+    background-color: #691a34;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.438);
+    border: none;
+    border-radius: 7px;
+    font-size: 25px;
+    font-weight: 600;
+    color: #fff;
+}
+.buttin:hover {
+    transition: .5s;
+    background-color: #88575f;
+    color: #701b37;
+}
