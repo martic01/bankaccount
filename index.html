@@ -107,7 +107,7 @@
                             </select>
                         </div>
                         <div class="input flex2">
-                            <input placeholder="Phone Number/NIN" class="nin" type="text" name="">
+                            <input placeholder="Phone Number/NIN" class="Phonenumber" type="text" name="">
                             <input placeholder="Email Address/Username" class="mail" type="text">
                         </div>
                         <button type="submit" class="btn btn2 colortext2 bgcolor1">
@@ -147,7 +147,12 @@
                 <div class="userpro flex pro">
                     <p class="flex">Point <span class="point">0</span></p>
                     <div class="imagelg">
-                        <img src="img/bell-regular.svg" alt="">
+                        <img class="def" src="img/ellipsis-vertical-solid.svg" alt="">
+                    </div>
+                    <div class="boloc">
+                        <p class="red blok">Block</p>
+                        <p class="red unbok">Unblock</p>
+                        <p class="red logout def">Log Out</p>
                     </div>
                 </div>
             </div>
@@ -172,7 +177,78 @@
                     </div>
                     <div class="allbtn flex">
                         <button class="buttin fund def">Fund account</button>
-                        <button class="buttin tranhis">Transaction History</button>
+                        <button class="buttin withdraw def">WithDraw</button>
+                        <button class="buttin tranhis def">Transaction History</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ttr back">
+                <div class="cancel">
+                    <img src="img/xmark-solid.svg" alt="">
+                </div>
+                <div class="transactions flex2">
+                    <p class="font3 colortext2 pfirst">Transaction History</p>
+                    <div class="alltrs">
+                        <div class="record flex font4">
+                            <div class="recimg">
+                                <img src="img/money-bill-solid.svg" alt="">
+                            </div>
+                            <div class="rectext flex">
+                                <p class="reason">for playin</p>
+                                <p class="show">20,000</p>
+                                <p class="green show">credit</p>
+                            </div>
+                        </div>
+                        <div class="record flex font4">
+                            <div class="recimg">
+                                <img src="img/money-bill-solid.svg" alt="">
+                            </div>
+                            <div class="rectext flex">
+                                <p class="reason">for playin</p>
+                                <p class="show">20,000</p>
+                                <p class="green show">credit</p>
+                            </div>
+                        </div>
+                        <div class="record flex font4">
+                            <div class="recimg rot">
+                                <img src="img/money-bill-solid.svg" alt="">
+                            </div>
+                            <div class="rectext flex">
+                                <p class="reason">for playin</p>
+                                <p class="show">20,000</p>
+                                <p class="red show">debit</p>
+                            </div>
+                        </div>
+                        <div class="record flex font4">
+                            <div class="recimg rot">
+                                <img src="img/money-bill-solid.svg" alt="">
+                            </div>
+                            <div class="rectext flex">
+                                <p class="reason">for playin</p>
+                                <p class="show">20,000</p>
+                                <p class="red show">debit</p>
+                            </div>
+                        </div>
+                        <div class="record flex font4">
+                            <div class="recimg rot">
+                                <img src="img/money-bill-solid.svg" alt="">
+                            </div>
+                            <div class="rectext flex">
+                                <p class="reason">for playin</p>
+                                <p class="show">20,000</p>
+                                <p class="red show">debit</p>
+                            </div>
+                        </div>
+                        <div class="record flex font4">
+                            <div class="recimg rot">
+                                <img src="img/money-bill-solid.svg" alt="">
+                            </div>
+                            <div class="rectext flex">
+                                <p class="reason">for playin</p>
+                                <p class="show">20,000</p>
+                                <p class="red show">debit</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,6 +257,7 @@
                     <div class="cancel">
                         <img src="img/xmark-solid.svg" alt="">
                     </div>
+                    <input placeholder="" class="acctnum" type="text">
                     <input placeholder="Amount" class="credit newin" type="text">
                     <button class="buttins buttin newin">Credit</button>
                 </div>
@@ -201,8 +278,10 @@
                     <div class="cancel">
                         <img src="img/xmark-solid.svg" alt="">
                     </div>
-                    <input placeholder="Amount" class="funds" type="text" name="">
+                    <input placeholder="Receviers name" class="sendname" type="text" name="">
                     <input placeholder="Receviers Account Number" class="Acctnumrev" type="text">
+                    <input placeholder="Amount" class="funds" type="text" name="">
+
                     <button class="buttins buttin">Send</button>
                 </div>
             </div>
@@ -213,8 +292,19 @@
                     </div>
                     <input placeholder="Network" class="Network" type="text" name="">
                     <input placeholder="Airtime/Data" class="aord" type="text" name="">
+                    <input placeholder="Recivers Number" class="cardphone" type="text" name="">
                     <input placeholder="Amount" class="datamount" type="text">
                     <button class="buttins buttin">Buy</button>
+                </div>
+            </div>
+            <div class="hide4 back">
+                <div class="input flex2 with">
+                    <div class="cancel">
+                        <img src="img/xmark-solid.svg" alt="">
+                    </div>
+                    <input placeholder="" class="acctnum" type="text">
+                    <input placeholder="Amount" class="credit newin" type="text">
+                    <button class="buttins buttin newin">withdraw</button>
                 </div>
             </div>
         </div>
@@ -230,7 +320,12 @@
                 your lifestyle choices, business demands and recreational ventures.</p>
         </div>
     </section>
-
+    <div class="warning font4" id="warning">
+        <div class="warnimg">
+            <img src="img/oops.jpeg" alt="">
+        </div>
+        <p class="warn">Pls check your input</p>
+    </div>
 </body>
 
 </html>
