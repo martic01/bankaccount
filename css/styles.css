@@ -406,6 +406,7 @@ select option:hover {
     transform: translateY(-100px);
 
     animation: 2s movin linear forwards;
+    animation-delay: 4.1s;
 }
 
 @keyframes movin {
@@ -872,7 +873,86 @@ select option:hover {
     font-size: 20px;
     font-weight: 700;
 }
+#load{
+ display: none;
+}
+.spin {
+    top: 0;
+    right: 0;
+    position: fixed;
+    background-color: #000;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+   
+}
 
+.spinimg {
+    position: fixed;
+    top: 300px;
+    right: 570px;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    /* background-color: #691a34; */
+
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        rotate: 90deg;
+        border-right: 5px solid #e7dfe2;
+        border-top: 5px solid #e7dfe2;
+       
+    }
+
+    25% {
+        rotate: 180deg;
+        border-top: 5px solid #e7dfe2;
+        border-bottom: 5px solid #e7dfe2;
+    }
+
+    50% {
+        rotate: 270deg;
+        border-right: 5px solid #91232d;
+        border-top: 5px solid #a02121;
+    }
+
+    75% {
+        rotate: 360deg;
+        border-top: 5px solid #a32020;
+        border-bottom: 5px solid #862121;
+    }
+    100% {
+        rotate: 90deg;
+        border-top: 5px solid #a32020;
+        border-bottom: 5px solid #862121;
+    }
+}
+
+.spinimg img {
+    scale: 0.6;
+
+    animation: 3s inout linear infinite;
+}
+@keyframes inout{
+    0%{
+        scale: 0.65;
+    }
+    25%{
+        scale: 0.7;
+    }
+    50%{
+        scale: 0.65;
+    }
+    75%{
+        scale: 0.7;
+    }
+    100%{
+        scale: 0.65;
+    }
+}
 .green {
     color: green;
 }
