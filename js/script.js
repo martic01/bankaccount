@@ -43,7 +43,19 @@ Account.prototype.fullName = function () {
     return this.firstName + ' ' + this.lastName;
 };
 
-
+function loading() {
+    let alert = document.getElementById("load");
+    let page = document.getElementById("user");
+    let logpage = document.getElementById("login");
+    page.style.display = "none";
+    alert.style.display = "block";
+    logpage.style.display = "block";
+    setTimeout(function () {
+        $("#user").slideDown()
+        alert.style.display = "none";
+        logpage.style.display = "none";
+    }, 4000);
+}
 
 function showAccount(accountId) {
     const account = bankAccount.findAccount(accountId);
@@ -403,7 +415,7 @@ function attachAccountListeners() {
                 </div>
             </div>
         `);
-            
+
             return newBalance;
         }
         $(".warn").text("Pls check your input");
@@ -450,6 +462,7 @@ function attachAccountListeners() {
                 if (updatedBalance !== undefined) {
                     $(".currentamount").text(updatedBalance);
                     $(".point").text(Accountpoint(accountId))
+                    $(".credit").val("");
                 }
                 break;
             case 1:
@@ -457,6 +470,7 @@ function attachAccountListeners() {
                 if (updatedBalanceout !== undefined) {
                     $(".currentamount").text(updatedBalanceout);
                     $(".point").text(Accountpoint(accountId))
+                    $(".debit").val("");
                 }
                 break;
             case 2:
@@ -464,6 +478,7 @@ function attachAccountListeners() {
                 if (updatedBalanceOutSend !== undefined) {
                     $(".currentamount").text(updatedBalanceOutSend);
                     $(".point").text(Accountpoint(accountId))
+                    $(".funds").val("");
                 }
                 break;
             case 3:
@@ -471,6 +486,7 @@ function attachAccountListeners() {
                 if (updatedBalanceCard !== undefined) {
                     $(".currentamount").text(updatedBalanceCard);
                     $(".point").text(Accountpoint(accountId))
+                    $(".datamount").val("");
                 }
                 break;
             default:
@@ -493,12 +509,20 @@ function attachAccountListeners() {
     }
     $(".userbdy").on('click', '.blok', function () {
         block()
+        $(".credit").val("");
+        $(".debit").val("");
+        $(".funds").val("");
+        $(".datamount").val("");
     })
     $(".userbdy").on('click', '.unblok', function () {
         unBlock()
     })
     $(".userbdy").on('click', '.cancel', function () {
         $(".back").slideUp()
+        $(".credit").val("");
+        $(".debit").val("");
+        $(".funds").val("");
+        $(".datamount").val("");
         $("marquee").show();
     })
     $(".userbdy").on('click', 'moneybut', function () {
@@ -514,8 +538,8 @@ $(document).ready(function () {
     attachAccountListeners();
     $(".continue").submit(function (event) {
         event.preventDefault();
-        $(".userinterface").slideDown();
-        $(".login-page").slideUp();
+        loading()
+        // $(".login-page").slideUp();
 
         const inputtedFirstName = $(".firstname").val();
         const inputtedLastName = $(".lastname").val();
