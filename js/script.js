@@ -88,6 +88,13 @@ function loading() {
         logpage.style.display = "none";
     }, 4000);
 }
+function PromtTimer() {
+    let alert = document.getElementById("warning");
+    alert.style.display = "block"
+    setTimeout(function () {
+        alert.style.display = "none";
+    }, 2000);
+}
 function warningTimer() {
     let alert = document.getElementById("warning2");
     alert.style.display = "block"
@@ -476,7 +483,6 @@ function attachAccountListeners() {
     $(".userbdy").on('click', '.moneybut', function () {
         let control = $(".moneybut").index(this);
         let accountId = $(this).attr('id');
-        console.log(control)
         switch (control) {
             case 0:
                 let updatedBalance = fundAccount(accountId);
@@ -655,7 +661,6 @@ function attachAccountListeners() {
             account.accountnumber
         );
         account.addTransaction(transaction);
-        console.log(transaction)
         showtrans(transaction)
 
     });
@@ -682,7 +687,6 @@ $(document).ready(function () {
         const emailAddress = $('.emaillogin').val().trim();
 
         if (account.password === password && account.emailAddress === emailAddress) {
-            console.log("Valid login");
             showAccount(account.id);
             loading();
         } else {
@@ -699,7 +703,7 @@ $(document).ready(function () {
             case 0:
                 const allinput = $(".alinputin").eq(chose).val().trim()
                 let long = allinput.length
-                let realLength = 10
+                let realLength = 50
                 let rule = long > realLength
                 if (rule) {
                     $(".alinputin").eq(chose).val(allinput.slice(0, realLength))
@@ -709,7 +713,7 @@ $(document).ready(function () {
             case 1:
                 const allinput2 = $(".alinputin").eq(chose).val().trim()
                 let long2 = allinput2.length
-                let realLength2 = 10
+                let realLength2 = 50
                 let rule2 = long2 > realLength2
                 if (rule2) {
                     $(".alinputin").eq(chose).val(allinput2.slice(0, realLength2))
@@ -718,7 +722,7 @@ $(document).ready(function () {
             case 2:
                 const allinput3 = $(".alinputin").eq(chose).val().trim()
                 let long3 = allinput3.length
-                let realLength3 = 10
+                let realLength3 = 50
                 let rule3 = long3 > realLength3
                 if (rule3) {
                     $(".alinputin").eq(chose).val(allinput3.slice(0, realLength3))
@@ -727,7 +731,7 @@ $(document).ready(function () {
             case 3:
                 const allinput4 = $(".alinputin").eq(chose).val().trim()
                 let long4 = allinput4.length
-                let realLength4 = 10
+                let realLength4 = 30
                 let rule4 = long4 > realLength4
                 if (rule4) {
                     $(".alinputin").eq(chose).val(allinput4.slice(0, realLength4))
@@ -736,7 +740,7 @@ $(document).ready(function () {
             case 4:
                 const allinput5 = $(".alinputin").eq(chose).val().trim()
                 let long5 = allinput5.length
-                let realLength5 = 10
+                let realLength5 = 30
                 let rule5 = long5 > realLength5
                 if (rule5) {
                     $(".alinputin").eq(chose).val(allinput5.slice(0, realLength5))
@@ -745,34 +749,16 @@ $(document).ready(function () {
             case 5:
                 const allinput6 = $(".alinputin").eq(chose).val().trim()
                 let long6 = allinput6.length
-                let realLength6 = 15
+                let realLength6 = 30
                 let rule6 = long6 > realLength6
                 if (rule6) {
                     $(".alinputin").eq(chose).val(allinput6.slice(0, realLength6))
                 }
                 break;
-            case 6:
-                const allinput7 = $(".alinputin").eq(chose).val().trim()
-                let long7 = allinput7.length
-                let realLength7 = 15
-                let rule7 = long7 > realLength7
-                if (rule7) {
-                    $(".alinputin").eq(chose).val(allinput7.slice(0, realLength7))
-                }
-                break;
-            case 7:
-                const allinput8 = $(".alinputin").eq(chose).val().trim()
-                let long8 = allinput8.length
-                let realLength8 = 6
-                let rule8 = long8 > realLength8
-                if (rule8) {
-                    $(".alinputin").eq(chose).val(allinput8.slice(0, realLength8))
-                }
-                break;
             default:
                 const allinput9 = $(".alinputin").eq(chose).val().trim()
                 let long9 = allinput9.length
-                let realLength9 = 15
+                let realLength9 = 30
                 let rule9 = long9 > realLength9
                 if (rule9) {
                     $(".alinputin").eq(chose).val(allinput9.slice(0, realLength9))
@@ -823,7 +809,6 @@ $(document).ready(function () {
         refresh.preventDefault();
         const accountId = $(this).find('.acctid').val().trim();
         displayAccount(accountId);
-        console.log("Login attempted");
     });
 
 

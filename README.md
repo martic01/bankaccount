@@ -35,7 +35,7 @@
 
 ## USage
 
-* 1.Navigate to the Sign-Up Page 
+* 1. Navigate to the Sign-Up Page 
 ```bash
 * Click on the "Sign Up" button/link.
 ```
@@ -49,21 +49,21 @@
 ```
 ## DashBoard
 
-* User Information
+### User Information
 ```bash
 * Displays your name, phone number, email, country, and account ID.
 * Input Your signedup Email
 * Input Your signedup password
 ```
-* Account Balance
+### Account Balance
 ```bash 
 * Shows your current account balance with options to hide or show the amount.
 ```
-*  Account Number
+###  Account Number
 ```bash 
 * Displays your unique account number with an option to copy it.
 ```
-*  Action
+###  Action
 ```bash 
 * Fund Account
 * Withdraw Funds
