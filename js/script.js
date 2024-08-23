@@ -269,7 +269,7 @@ function attachAccountListeners() {
         }
         let newBalance = (currentBalance + inputedfund).toFixed(2);
         account.balance = newBalance;
-
+        $(".point").text(Accountpoint(accountId))
         account.addTransaction(
             account.firstName,
             inputedfund,
@@ -314,6 +314,7 @@ function attachAccountListeners() {
         $('.debit').val("");
         let newBalance = (currentBalance - inputedfund).toFixed(2);
         account.balance = newBalance;
+        $(".point").text(Accountpoint(accountId))
         // Create a transaction
         account.addTransaction(
             account.firstName,
@@ -364,6 +365,7 @@ function attachAccountListeners() {
             $('.funds').val("");
             let newBalance = (currentBalance - inputedfund).toFixed(2);
             account.balance = newBalance;
+            $(".point").text(Accountpoint(accountId))
             let reson = nameSent + ' | ' + nameSentnum
             account.addTransaction(
                 reson,
@@ -417,6 +419,7 @@ function attachAccountListeners() {
             $('.datammount').val("");
             let newBalance = (currentBalance - inputedfund).toFixed(2);
             account.balance = newBalance;
+            $(".point").text(Accountpoint(accountId))
             let reson = valuenet + " | " + valueSent
             account.addTransaction(
                 reson,
@@ -456,24 +459,16 @@ function attachAccountListeners() {
         // }
         let addedPoint = 2
         let pointLimit = 10
-        let limit = 100500000
         let currentPoint = parseInt(account.point);
-        let currentBalance = parseFloat(account.balance);
-        let inputedfund = parseFloat($(`#${accountId}.credit`).val());
+       let rule = currentPoint > pointLimit
 
-        if (isNaN(inputedfund) || inputedfund <= 0) {
-            console.error("Invalid fund amount");
-            return currentpoint;
-        }
+       let newPoint = currentPoint + addedPoint;
+     
+        if (rule) {
 
-        let newPoint = currentPoint + addedPoint;
-        let newBalance = currentBalance + inputedfund;
-
-        if (newBalance > limit && newPoint > pointLimit) {
             newPoint = 0;
             account.point = newPoint;
         } else {
-            account.balance = currentBalance.toFixed(2);
             account.point = newPoint;
         }
         return account.point;
@@ -487,7 +482,6 @@ function attachAccountListeners() {
                 let updatedBalance = fundAccount(accountId);
                 if (updatedBalance !== undefined) {
                     $(".currentamount").text(updatedBalance);
-                    $(".point").text(Accountpoint(accountId))
                     $(".credit").val("");
                 }
                 break;
@@ -495,7 +489,6 @@ function attachAccountListeners() {
                 let updatedBalanceout = WithDrawFunds(accountId);
                 if (updatedBalanceout !== undefined) {
                     $(".currentamount").text(updatedBalanceout);
-                    $(".point").text(Accountpoint(accountId))
                     $(".debit").val("");
                 }
                 break;
@@ -503,7 +496,6 @@ function attachAccountListeners() {
                 let updatedBalanceOutSend = sendFunds(accountId);
                 if (updatedBalanceOutSend !== undefined) {
                     $(".currentamount").text(updatedBalanceOutSend);
-                    $(".point").text(Accountpoint(accountId))
                     $(".funds").val("");
                 }
                 break;
@@ -511,7 +503,6 @@ function attachAccountListeners() {
                 let updatedBalanceCard = Recharge(accountId);
                 if (updatedBalanceCard !== undefined) {
                     $(".currentamount").text(updatedBalanceCard);
-                    $(".point").text(Accountpoint(accountId))
                     $(".datamount").val("");
                 }
                 break;
