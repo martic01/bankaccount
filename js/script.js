@@ -251,13 +251,6 @@ function showAccount(accountId) {
         `);
 }
 function attachAccountListeners() {
-    function PromtTimer() {
-        let alert = document.getElementById("warning");
-        alert.style.display = "block"
-        setTimeout(function () {
-            alert.style.display = "none";
-        }, 2000);
-    }
     function fundAccount(accountId) {
         const account = bankAccount.findAccount(accountId);
         let currentBalance = parseFloat(account.balance);
@@ -303,7 +296,6 @@ function attachAccountListeners() {
         return newBalance;
     }
     function WithDrawFunds(accountId) {
-
         const account = bankAccount.findAccount(accountId);
         let currentBalance = parseFloat(account.balance);
         let inputedfund = parseFloat($(`#${accountId}.debit`).val());
@@ -683,32 +675,32 @@ function attachAccountListeners() {
 
 let bankAccount = new BankAccount();
 
-
-
-function displayAccount(accountId) {
-    const account = bankAccount.findAccount(accountId);  // Use accountId directly
-    if (!account) {
-        warningTimer()
-        $(".warnimg2").html('<img src="img/blankinvalid.png" alt="">');
-        $(".warn2").text("Account does not exsist");
-        return;
-    }
-
-    const password = $('.password').val().trim();
-    const emailAddress = $('.emaillogin').val().trim();
-
-    if (account.password === password && account.emailAddress === emailAddress) {
-        console.log("Valid login");
-        showAccount(account.id);
-        loading();
-    } else {
-        warningTimer()
-        $(".warnimg2").html('<img src="img/cahh.jpg" alt="">');
-        $(".warn2").text("Check input, invalid details");
-    }
-}
+// BANK USERINTERFACE
 
 $(document).ready(function () {
+    function displayAccount(accountId) {
+        const account = bankAccount.findAccount(accountId);
+        if (!account) {
+            warningTimer()
+            $(".warnimg2").html('<img src="img/blankinvalid.png" alt="">');
+            $(".warn2").text("Account does not exsist");
+            return;
+        }
+
+        const password = $('.password').val().trim();
+        const emailAddress = $('.emaillogin').val().trim();
+
+        if (account.password === password && account.emailAddress === emailAddress) {
+            console.log("Valid login");
+            showAccount(account.id);
+            loading();
+        } else {
+            warningTimer()
+            $(".warnimg2").html('<img src="img/cahh.jpg" alt="">');
+            $(".warn2").text("Check input, invalid details");
+        }
+    }
+
     $(".alinputin").on('input', function () {
         let chose = $(".alinputin").index(this)
 
@@ -843,15 +835,17 @@ $(document).ready(function () {
         console.log("Login attempted");
     });
 
+
+});
+
+window.onload = function () {
+
     $(".signupin").submit(function (refresh) {
         refresh.preventDefault()
         $(".continue").slideDown()
         $(".signupin").slideUp()
 
     })
-});
-window.onload = function () {
-
 
     $(".signto").click(function () {
         $(".signup").show()
