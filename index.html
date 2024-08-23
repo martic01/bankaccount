@@ -60,12 +60,14 @@
                             <h2>Welcome Back!</h2>
                             <div class="lining"></div>
                         </div>
+                        <p class="tplit">Accout ID : <span class="did">No ID Yet</span></p>
                     </div>
                     <form class="allinput flex2 loginin">
                         <div class="input flex2">
-                            <input placeholder="Email Address/Username" class="username" type="text">
+                            <input  placeholder="Account ID" class="acctid alinputin" type="number">
+                            <input  placeholder="Email Address" class="emaillogin alinputin" type="email">
                             <p class="colortext1"><span>Forgot password</span></p>
-                            <input placeholder="Password" class="password" type="text" name="">
+                            <input  placeholder="Password" class="password alinputin" type="text" name="">
                         </div>
                         <button type="submit" class="btn colortext2 bgcolor1">
                             Login
@@ -91,25 +93,26 @@
                         <form class="allinput flex2 signupin">
                             <div class="input flex2 select-container ">
                                 <p>Contry/Region</p>
-                                <select name="input" id="contries">
-                                    <option class="option" value="1">Nigeria</option>
-                                    <option value="1">Algeria</option>
-                                    <option value="2">Angola</option>
-                                    <option value="3">Benin</option>
-                                    <option value="4">Botswana</option>
-                                    <option value="5">Burkina Faso</option>
-                                    <option value="6">Burundi</option>
-                                    <option value="7">Cabo Verde</option>
-                                    <option value="2">United State</option>
-                                    <option value="3">Ghana</option>
-                                    <option value="4">Portugal</option>
-                                    <option value="5">Morocco</option>
-                                    <option value="6">Paris</option>
+                                <select name="input" id="countries">
+                                    <option>Nigeria</option>
+                                    <option>Algeria</option>
+                                    <option>Angola</option>
+                                    <option>Benin</option>
+                                    <option>Botswana</option>
+                                    <option>Burkina Faso</option>
+                                    <option>Burundi</option>
+                                    <option>Cabo Verde</option>
+                                    <option>United State</option>
+                                    <option>Ghana</option>
+                                    <option>Portugal</option>
+                                    <option>Morocco</option>
+                                    <option>Paris</option>
                                 </select>
                             </div>
                             <div class="input flex2">
-                                <input placeholder="Phone Number/NIN" class="Phonenumber" type="text" name="">
-                                <input placeholder="Email Address/Username" class="mail" type="text">
+                                <input required placeholder="Phone Number/NIN" class="phonenumber alinputin"
+                                    type="number" name="">
+                                <input required placeholder="Email Address" class="mail alinputin" type="email">
                             </div>
                             <button type="submit" class="btn btn2 colortext2 bgcolor1">
                                 Next
@@ -118,15 +121,14 @@
                         </form>
                         <form class="allinput flex2 continue">
                             <div class="input flex2">
-                                <input placeholder="First Name" class="firstname" type="text" name="">
-                                <input placeholder="Last Name" class="lastname" type="text" name="">
-                                <input placeholder="Password" class="passwordtocreate" type="text">
+                                <input required placeholder="First Name" class="firstname alinputin" type="text" name="">
+                                <input required  placeholder="Last Name" class="lastname alinputin" type="text" name="">
+                                <input required placeholder="create Password" class="passwordtocreate alinputin" type="text">
                             </div>
-                            <div class="input flex2 input2">
-                                <p>One UpperCase Letter</p>
-                                <p>Atleast One Symbol</p>
-                                <p>Length Of Atleast 6 Charachters</p>
-                            </div>
+                            <!-- <div class="input flex2 input2"> -->
+                                <p class="switchback font3"><<<<</p>
+                               
+                            <!-- </div> -->
                             <button type="submit" class="btn btn3 colortext2 bgcolor1">
                                 Sign up
                             </button>
@@ -138,176 +140,6 @@
         </section>
         <section class="userinterface" id="user">
             <div class="userbdy">
-                <div class="userhd bgcolor2 flex font4">
-                    <div class="userpro flex">
-                        <div class="bgcolor2 imagepro">
-                            <img src="img/user-regular.svg" alt="">
-                        </div>
-                        <p>Hi <span class="username"></span></p>
-                    </div>
-                    <div class="userpro flex pro">
-                        <p class="flex">Point <span class="point">0</span></p>
-                        <div class="imagelg">
-                            <img class="def" src="img/ellipsis-vertical-solid.svg" alt="">
-                        </div>
-                        <div class="boloc">
-                            <p class="red blok">Block</p>
-                            <p class="red unbok">Unblock</p>
-                            <p class="red logout def">Log Out</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bginfo font4">
-                    <div class="info colortext2 flex2">
-                        <p>Balance</p>
-                        <div class="amount flex">
-                            <div class="imgamount">
-                                <img src="img/naira-sign-solid.svg" alt="">
-                            </div>
-                            <p class="currentamount">00.0</p>
-                            <div class="imghide imagelg">
-                                <img src="img/eye-regular (1).svg" alt="">
-                            </div>
-                        </div>
-                        <p>Account Number</p>
-                        <div class="acctnumdiv flex">
-                            <p class="acctnum">000000000</p>
-                            <div class="imghide imagelg">
-                                <img src="img/copy-regular (1).svg" alt="">
-                            </div>
-                        </div>
-                        <div class="allbtn flex">
-                            <button class="buttin fund def">Fund account</button>
-                            <button class="buttin withdraw def">WithDraw</button>
-                            <button class="buttin tranhis def">Transaction History</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="ttr back">
-                    <div class="cancel">
-                        <img src="img/xmark-solid.svg" alt="">
-                    </div>
-                    <div class="transactions flex2">
-                        <p class="font3 colortext2 pfirst">Transaction History</p>
-                        <div class="alltrs">
-                            <div class="record flex font4">
-                                <div class="recimg">
-                                    <img src="img/money-bill-solid.svg" alt="">
-                                </div>
-                                <div class="rectext flex">
-                                    <p class="reason">for playin</p>
-                                    <p class="show">20,000</p>
-                                    <p class="green show">credit</p>
-                                </div>
-                            </div>
-                            <div class="record flex font4">
-                                <div class="recimg">
-                                    <img src="img/money-bill-solid.svg" alt="">
-                                </div>
-                                <div class="rectext flex">
-                                    <p class="reason">for playin</p>
-                                    <p class="show">20,000</p>
-                                    <p class="green show">credit</p>
-                                </div>
-                            </div>
-                            <div class="record flex font4">
-                                <div class="recimg rot">
-                                    <img src="img/money-bill-solid.svg" alt="">
-                                </div>
-                                <div class="rectext flex">
-                                    <p class="reason">for playin</p>
-                                    <p class="show">20,000</p>
-                                    <p class="red show">debit</p>
-                                </div>
-                            </div>
-                            <div class="record flex font4">
-                                <div class="recimg rot">
-                                    <img src="img/money-bill-solid.svg" alt="">
-                                </div>
-                                <div class="rectext flex">
-                                    <p class="reason">for playin</p>
-                                    <p class="show">20,000</p>
-                                    <p class="red show">debit</p>
-                                </div>
-                            </div>
-                            <div class="record flex font4">
-                                <div class="recimg rot">
-                                    <img src="img/money-bill-solid.svg" alt="">
-                                </div>
-                                <div class="rectext flex">
-                                    <p class="reason">for playin</p>
-                                    <p class="show">20,000</p>
-                                    <p class="red show">debit</p>
-                                </div>
-                            </div>
-                            <div class="record flex font4">
-                                <div class="recimg rot">
-                                    <img src="img/money-bill-solid.svg" alt="">
-                                </div>
-                                <div class="rectext flex">
-                                    <p class="reason">for playin</p>
-                                    <p class="show">20,000</p>
-                                    <p class="red show">debit</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hide1 back">
-                    <div class="input flex2 creditfund">
-                        <div class="cancel">
-                            <img src="img/xmark-solid.svg" alt="">
-                        </div>
-                        <input placeholder="" class="acctnum" type="text">
-                        <input placeholder="Amount" class="credit newin" type="text">
-                        <button class="buttins buttin newin">Credit</button>
-                    </div>
-                </div>
-                <div class="pay flex font4">
-                    <div class="contpay">
-                        <div class="payment def ment"><img src="img/sack-dollar-solid.svg" alt=""></div>
-                        <p>Send Money</p>
-                    </div>
-                    <Marquee class="font3">Alert By Martic</Marquee>
-                    <div class="contpay">
-                        <div class="payment ment2 def"><img src="img/money-bill-solid.svg" alt=""></div>
-                        <p>Buy Airtime</p>
-                    </div>
-                </div>
-                <div class="hide2 back">
-                    <div class="input flex2 send">
-                        <div class="cancel">
-                            <img src="img/xmark-solid.svg" alt="">
-                        </div>
-                        <input placeholder="Receviers name" class="sendname" type="text" name="">
-                        <input placeholder="Receviers Account Number" class="Acctnumrev" type="text">
-                        <input placeholder="Amount" class="funds" type="text" name="">
-
-                        <button class="buttins buttin">Send</button>
-                    </div>
-                </div>
-                <div class="hide3 back">
-                    <div class="input flex2 airtime">
-                        <div class="cancel">
-                            <img src="img/xmark-solid.svg" alt="">
-                        </div>
-                        <input placeholder="Network" class="Network" type="text" name="">
-                        <input placeholder="Airtime/Data" class="aord" type="text" name="">
-                        <input placeholder="Recivers Number" class="cardphone" type="text" name="">
-                        <input placeholder="Amount" class="datamount" type="text">
-                        <button class="buttins buttin">Buy</button>
-                    </div>
-                </div>
-                <div class="hide4 back">
-                    <div class="input flex2 with">
-                        <div class="cancel">
-                            <img src="img/xmark-solid.svg" alt="">
-                        </div>
-                        <input placeholder="" class="acctnum" type="text">
-                        <input placeholder="Amount" class="credit newin" type="text">
-                        <button class="buttins buttin newin">withdraw</button>
-                    </div>
-                </div>
             </div>
             <div class="alertmessage flex font4">
                 <div class="mesagimg">
@@ -330,6 +162,12 @@
                 <img src="img/oops.jpeg" alt="">
             </div>
             <p class="warn">Pls check your input</p>
+        </div>
+        <div class="warning font4"  id="warning2">
+            <div class="warnimg warnimg2">
+                <!-- <img src="img/cahh.jpg" alt=""> -->
+            </div>
+            <p class="warn warn2"></p>
         </div>
     </main>
     <div id="load">
