@@ -1045,6 +1045,14 @@ font-size: 19px;
     height: 50px;
     background-color: white;
 }
+#sent .warnimg{
+    height: 100px;
+    background-color: white;
+}
+#sent img{
+   height: 100%;
+
+}
 .signup {
     display: none;
 }

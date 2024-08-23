@@ -20,7 +20,7 @@ BankAccount.prototype.findAccount = function (id) {
 }
 
 // Business Logic for each account
-function Account(firstname, lastname, phonenumber, emailaddress, country, password, balance, point,accountnumber) {
+function Account(firstname, lastname, phonenumber, emailaddress, country, password, balance, point, accountnumber) {
     this.firstName = firstname;
     this.lastName = lastname;
     this.phoneNumber = phonenumber;
@@ -31,7 +31,7 @@ function Account(firstname, lastname, phonenumber, emailaddress, country, passwo
     this.point = point
     this.accountnumber = accountnumber
     this.transactions = {}
-    this.transactionId=0
+    this.transactionId = 0
 }
 
 function generateAccountNumber() {
@@ -90,6 +90,13 @@ function loading() {
 }
 function warningTimer() {
     let alert = document.getElementById("warning2");
+    alert.style.display = "block"
+    setTimeout(function () {
+        alert.style.display = "none";
+    }, 2000);
+}
+function sentTimer() {
+    let alert = document.getElementById("sent");
     alert.style.display = "block"
     setTimeout(function () {
         alert.style.display = "none";
@@ -272,11 +279,11 @@ function attachAccountListeners() {
 
         account.addTransaction(
             account.firstName,
-            inputedfund,              
+            inputedfund,
             "Credit",
             account.accountnumber
         );
-    
+
         // Update the UI to reflect the new transaction
         let transaction = account.transactions[account.transactionId];
         let contactsList = $(".alltrs");
@@ -292,7 +299,7 @@ function attachAccountListeners() {
                 </div>
             </div>
         `);
-
+        sentTimer()
         return newBalance;
     }
     function WithDrawFunds(accountId) {
@@ -312,21 +319,21 @@ function attachAccountListeners() {
             $(".warn").text("Invalid Fund Amount");
             return currentBalance.toFixed(2);
         }
-
+        $('.debit').val("");
         let newBalance = (currentBalance - inputedfund).toFixed(2);
         account.balance = newBalance;
-            // Create a transaction
-            account.addTransaction(
-                account.firstName,
-                inputedfund,              
-                "Credit",
-                account.accountnumber
-            );
-        
-            // Update the UI to reflect the new transaction
-            let transaction = account.transactions[account.transactionId];
-            let contactsList = $(".alltrs");
-            contactsList.append(`
+        // Create a transaction
+        account.addTransaction(
+            account.firstName,
+            inputedfund,
+            "Credit",
+            account.accountnumber
+        );
+
+        // Update the UI to reflect the new transaction
+        let transaction = account.transactions[account.transactionId];
+        let contactsList = $(".alltrs");
+        contactsList.append(`
                 <div class="record flex font4">
                     <div class="recimg">
                         <img src="img/money-bill-solid.svg" alt="">
@@ -338,8 +345,8 @@ function attachAccountListeners() {
                     </div>
                 </div>
             `);
-    
 
+        sentTimer()
         return newBalance;
     }
     function sendFunds(accountId) {
@@ -362,17 +369,17 @@ function attachAccountListeners() {
                 $(".warn").text("Invalid Fund Amount");
                 return currentBalance.toFixed(2);
             }
-
+            $('.funds').val("");
             let newBalance = (currentBalance - inputedfund).toFixed(2);
             account.balance = newBalance;
             let reson = nameSent + ' | ' + nameSentnum
             account.addTransaction(
                 reson,
-                inputedfund,              
+                inputedfund,
                 "Credit",
                 account.accountnumber
             );
-        
+
             // Update the UI to reflect the new transaction
             let transaction = account.transactions[account.transactionId];
             let contactsList = $(".alltrs");
@@ -388,7 +395,7 @@ function attachAccountListeners() {
                     </div>
                 </div>
             `);
-    
+            sentTimer()
             return newBalance;
         }
         $(".warn").text("Pls check your input");
@@ -415,17 +422,17 @@ function attachAccountListeners() {
                 $(".warn").text("Invalid Fund Amount");
                 return currentBalance.toFixed(2);
             }
-
+            $('.datammount').val("");
             let newBalance = (currentBalance - inputedfund).toFixed(2);
             account.balance = newBalance;
             let reson = valuenet + " | " + valueSent
             account.addTransaction(
                 reson,
-                inputedfund,              
+                inputedfund,
                 "Credit",
                 account.accountnumber
             );
-        
+
             // Update the UI to reflect the new transaction
             let transaction = account.transactions[account.transactionId];
             let contactsList = $(".alltrs");
@@ -441,8 +448,8 @@ function attachAccountListeners() {
                     </div>
                 </div>
             `);
-    
 
+            sentTimer()
             return newBalance;
         }
         $(".warn").text("Pls check your input");
@@ -531,8 +538,8 @@ function attachAccountListeners() {
         tempTextarea.select();
         document.execCommand("copy");
         $(tempTextarea).remove();
-    
-      });
+
+    });
 
     $(".userbdy").on('click', '.userprofile', function () {
         $(".profile").slideToggle()
@@ -653,15 +660,15 @@ function attachAccountListeners() {
 
         account.addTransaction(
             reson,
-            inputedfund,              
+            inputedfund,
             "Credit",
             account.accountnumber
         );
-      
+
         let transaction = new Transaction(
-            account.firstName,   
-            inputedfund,                 
-            "Credit",   
+            account.firstName,
+            inputedfund,
+            "Credit",
             account.accountnumber
         );
         account.addTransaction(transaction);
@@ -820,7 +827,7 @@ $(document).ready(function () {
         $(".passwordtocreate").val("")
 
 
-        let newAccount = new Account(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedCountry, inputtedPassword, currentBalance, point,accountNumer);
+        let newAccount = new Account(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedCountry, inputtedPassword, currentBalance, point, accountNumer);
         bankAccount.AddAcount(newAccount);
         $(".did").text(newAccount.id);
         $(".acctid").val(newAccount.id);
