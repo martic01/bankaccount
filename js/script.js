@@ -1,3 +1,4 @@
+
 // Business Logic for each account
 function BankAccount() {
     this.Accounts = {};
@@ -19,7 +20,7 @@ BankAccount.prototype.findAccount = function (id) {
 }
 
 // Business Logic for each account
-function Account(firstname, lastname, phonenumber, emailaddress, country, password, balance, point, transaction) {
+function Account(firstname, lastname, phonenumber, emailaddress, country, password, balance, point,accountnumber) {
     this.firstName = firstname;
     this.lastName = lastname;
     this.phoneNumber = phonenumber;
@@ -28,21 +29,48 @@ function Account(firstname, lastname, phonenumber, emailaddress, country, passwo
     this.password = password;
     this.balance = balance;
     this.point = point
-    this.transaction = transaction = function transaction(name, amount, event, reciveraccount) {
-        this.name = name;
-        this.amount = amount;
-        this.event = event
-        this.reciverAcccount = reciveraccount
-    }
-
+    this.accountnumber = accountnumber
+    this.transactions = {}
+    this.transactionId=0
 }
-Account.prototype.generateAccountNumber = function () {
+
+function generateAccountNumber() {
     return Math.floor(1000000000 + Math.random() * 9000000000)
 }
 Account.prototype.fullName = function () {
     return this.firstName + ' ' + this.lastName;
 };
+Account.prototype.addTransaction = function (name, amount, event, receiverAccount) {
+    this.transactionId++; // Increment the transaction ID
 
+    const transaction = {
+        id: this.transactionId,
+        name: name,
+        amount: amount,
+        event: event,
+        receiverAccount: receiverAccount,
+    };
+
+    // Store the transaction using the transactionId as the key
+    this.transactions[this.transactionId] = transaction;
+};
+
+// Account.prototype.addTransaction = function (transaction) {
+//     this.transaction = transaction
+// };
+
+// Account.prototype.findtransaction = function (id) {
+//     if (this.transactions[id] !== undefined) {
+//         return this.transactions[id];
+//     }
+//     return false;
+// }
+// function Transaction(name, amount, event, receiverAccount) {
+//     this.name = name;
+//     this.amount = amount;
+//     this.event = event;
+//     this.receiverAccount = receiverAccount;
+// }
 function loading() {
     let alert = document.getElementById("load");
     let page = document.getElementById("user");
@@ -52,23 +80,60 @@ function loading() {
     logpage.style.display = "block";
     setTimeout(function () {
         $("#user").slideDown()
+        $('.password').val("")
+        $('.emaillogin').val("")
+        $(".did").text("No ID yet");
+        $(".acctid").val("");
         alert.style.display = "none";
         logpage.style.display = "none";
     }, 4000);
 }
-
+function warningTimer() {
+    let alert = document.getElementById("warning2");
+    alert.style.display = "block"
+    setTimeout(function () {
+        alert.style.display = "none";
+    }, 2000);
+}
+function showtrans(transaction) {
+    const account = bankAccount.findAccount(this.id);
+    let trans = account.findtransaction(transaction)
+    let contactsList = $(".alltrs");
+    contactsList.append(`
+    <div class="record flex font4">
+        <div class="recimg">
+            <img src="img/money-bill-solid.svg" alt="">
+        </div>
+        <div class="rectext flex">
+            <p class="reason">${trans.name}</p>
+            <p class="show">${trans.amount.toFixed(2)}</p>
+            <p class="green show">${trans.event}</p>
+        </div>
+    </div>
+`);
+}
 function showAccount(accountId) {
     const account = bankAccount.findAccount(accountId);
     $(".userinterface").show()
     let page = $(".userbdy");
     page.empty();
     page.append(`
-            <div class="userhd bgcolor2 flex font4">
+            <div class="userhd  bgcolor2 flex font4" id="${account.id}">
                 <div class="userpro flex">
-                    <div class="bgcolor2 imagepro">
+                    <div class="bgcolor2 ${account.firstName} imagepro userprofile">
                         <img src="img/user-regular.svg" alt="">
                     </div>
+                      <div class="profile">
+                            <p>User Name: <span class="userfullnm">${account.fullName()}</span></p>
+                            <p>Phone no.: <span class="phnm">${account.phoneNumber}</span></p>
+                            <p>Email: <span class="emailus">${account.emailAddress}</span></p>
+                            <p>Country: <span class="cutry">${account.country}</span></p>
+                            <p>Password: <span class="pss">${account.password}</span></p>
+                             <p>Account Number: <span class="pss">${account.accountnumber}</span></p>
+                            <p>Account ID: <span class="acctcid">${account.id}</span></p>
+                        </div>
                     <p>Hi <span class="username">${account.firstName}</span></p>
+                     <p class="lit">Account ID : <span class="acctcid">${account.id}</span>
                 </div>
                 <div class="userpro flex pro">
                     <p class="flex">Point <span id="${account.id}" class="point">${account.point}</span></p>
@@ -96,8 +161,8 @@ function showAccount(accountId) {
                     </div>
                     <p>Account Number</p>
                     <div class="acctnumdiv flex">
-                        <p class="acctnum">${account.generateAccountNumber()}</p>
-                        <div id="${account.id}" class="imghide imagelg">
+                        <p id="${account.id}" class="acctnum">${account.accountnumber}</p>
+                        <div id="${account.id}" class="imghide imagelg copy">
                             <img src="img/copy-regular (1).svg" alt="">
                         </div>
                     </div>
@@ -124,7 +189,8 @@ function showAccount(accountId) {
                     <div class="cancel">
                         <img src="img/xmark-solid.svg" alt="">
                     </div>
-                    <input placeholder="" readonly class="acctnuminput" type="text">
+                    <input placeholder="" readonly id="${account.id}" class="usernameinput" type="text" name="">
+                    <input placeholder="" id="${account.id}" readonly class="acctnuminput" type="text">
                     <input placeholder="Amount" id="${account.id}" class="credit newin" type="text">
                     <button id="${account.id}" class="buttins buttin newin moneybut">Credit</button>
                 </div>
@@ -134,7 +200,8 @@ function showAccount(accountId) {
                     <div class="cancel">
                         <img src="img/xmark-solid.svg" alt="">
                     </div>
-                    <input placeholder="" readonly class="acctnuminput" type="text">
+                    <input placeholder="" readonly id="${account.id}" class="usernameinput" type="text" name="">
+                    <input placeholder="" id="${account.id}" readonly class="acctnuminput" type="text">
                     <input placeholder="Amount" id="${account.id}" class="debit newin" type="text">
                     <button id="${account.id}" class="buttins buttin moneybut">withdraw</button>
                 </div>
@@ -177,80 +244,6 @@ function showAccount(accountId) {
         `);
 }
 function attachAccountListeners() {
-    $(".userbdy").on('click', '.def', function () {
-        let control = $(".def").index(this);
-        let accountnom = $(this).closest(".bginfo").find(".acctnum").text();
-        // $(account.id + ".acctnum").text()
-        switch (control) {
-            case 0:
-                $(".boloc").slideToggle();
-                $(".ttr").slideUp();
-                $(".hide1").slideUp();
-                $(".hide3").slideUp();
-                $(".hide2").slideUp();
-                $(".hide4").slideUp();
-                $("marquee").show();
-                break;
-            case 1:
-                $(".boloc").slideUp();
-                $(".login-page").show()
-                $(".userinterface").slideUp();
-                $(".login").show()
-                $(".signup").hide()
-                $(".ttr").slideUp();
-                $(".hide1").slideUp();
-                $(".hide3").slideUp();
-                $(".hide2").slideUp();
-                $(".hide4").slideUp();
-                $("marquee").show();
-                break;
-            case 2:
-                $(".boloc").slideUp();
-                $(".hide4").slideUp();
-                $(".ttr").slideUp();
-                $(".hide1").fadeIn();
-                $(".hide3").slideUp();
-                $(".hide2").slideUp();
-                $("marquee").show();
-                $(".acctnuminput").val(accountnom);
-                break;
-            case 3:
-                $(".boloc").slideUp();
-                $(".hide1").slideUp();
-                $(".hide2").slideUp();
-                $(".hide3").slideUp();
-                $(".hide4").fadeIn();
-                $("marquee").hide();
-                $(".ttr").slideUp();
-                break;
-            case 4:
-                $(".boloc").slideUp();
-                $(".ttr").fadeIn();
-                $(".hide4").slideUp();
-                $(".hide1").slideUp();
-                $(".hide3").slideUp();
-                $(".hide2").slideUp();
-                $("marquee").show();
-                break;
-            case 5:
-                $(".boloc").slideUp();
-                $(".ttr").slideUp();
-                $(".hide1").slideUp();
-                $(".hide3").slideUp();
-                $(".hide2").fadeIn();
-                $(".hide4").slideUp();
-                $("marquee").show();
-                break;
-            default:
-                $(".boloc").slideUp();
-                $(".hide3").fadeIn();
-                $(".hide2").slideUp();
-                $(".hide1").slideUp();
-                $(".ttr").slideUp();
-                $(".hide4").slideUp();
-                $("marquee").show();
-        }
-    })
     function PromtTimer() {
         let alert = document.getElementById("warning");
         alert.style.display = "block"
@@ -259,11 +252,10 @@ function attachAccountListeners() {
         }, 2000);
     }
     function fundAccount(accountId) {
-
         const account = bankAccount.findAccount(accountId);
         let currentBalance = parseFloat(account.balance);
         let inputedfund = parseFloat($(`#${accountId}.credit`).val());
-        let limit = 100500000
+        let limit = 1500000
         if (currentBalance + inputedfund > limit) {
             PromtTimer()
             $(".warn").text("Cannot Add funds, Income limit exceeded");
@@ -275,11 +267,19 @@ function attachAccountListeners() {
             $(".warn").text("Invalid Fund Amount");
             return currentBalance.toFixed(2);
         }
-
         let newBalance = (currentBalance + inputedfund).toFixed(2);
         account.balance = newBalance;
+
+        account.addTransaction(
+            account.firstName,
+            inputedfund,              
+            "Credit",
+            account.accountnumber
+        );
+    
+        // Update the UI to reflect the new transaction
+        let transaction = account.transactions[account.transactionId];
         let contactsList = $(".alltrs");
-        let transaction = new account.transaction(account.firstName, inputedfund, "Credit", accountId);
         contactsList.append(`
             <div class="record flex font4">
                 <div class="recimg">
@@ -315,20 +315,30 @@ function attachAccountListeners() {
 
         let newBalance = (currentBalance - inputedfund).toFixed(2);
         account.balance = newBalance;
-        let contactsList = $(".alltrs");
-        let transaction = new account.transaction(account.firstName, inputedfund, "Debit", accountId);
-        contactsList.prepend(`
-            <div class="record flex font4">
-                <div class="recimg">
-                    <img src="img/money-bill-solid.svg" alt="">
+            // Create a transaction
+            account.addTransaction(
+                account.firstName,
+                inputedfund,              
+                "Credit",
+                account.accountnumber
+            );
+        
+            // Update the UI to reflect the new transaction
+            let transaction = account.transactions[account.transactionId];
+            let contactsList = $(".alltrs");
+            contactsList.append(`
+                <div class="record flex font4">
+                    <div class="recimg">
+                        <img src="img/money-bill-solid.svg" alt="">
+                    </div>
+                    <div class="rectext flex">
+                        <p class="reason">${transaction.name}</p>
+                        <p class="show">${transaction.amount.toFixed(2)}</p>
+                        <p class="green show">${transaction.event}</p>
+                    </div>
                 </div>
-                <div class="rectext flex">
-                    <p class="reason">${transaction.name}</p>
-                    <p class="show">${transaction.amount.toFixed(2)}</p>
-                    <p class="red show">${transaction.event}</p>
-                </div>
-            </div>
-        `);
+            `);
+    
 
         return newBalance;
     }
@@ -355,22 +365,30 @@ function attachAccountListeners() {
 
             let newBalance = (currentBalance - inputedfund).toFixed(2);
             account.balance = newBalance;
-            let contactsList = $(".alltrs");
             let reson = nameSent + ' | ' + nameSentnum
-            let transaction = new account.transaction(reson, inputedfund, "Debit", accountId);
-            contactsList.prepend(`
-            <div class="record flex font4">
-                <div class="recimg">
-                    <img src="img/money-bill-solid.svg" alt="">
+            account.addTransaction(
+                reson,
+                inputedfund,              
+                "Credit",
+                account.accountnumber
+            );
+        
+            // Update the UI to reflect the new transaction
+            let transaction = account.transactions[account.transactionId];
+            let contactsList = $(".alltrs");
+            contactsList.append(`
+                <div class="record flex font4">
+                    <div class="recimg">
+                        <img src="img/money-bill-solid.svg" alt="">
+                    </div>
+                    <div class="rectext flex">
+                        <p class="reason">${transaction.name}</p>
+                        <p class="show">${transaction.amount.toFixed(2)}</p>
+                        <p class="green show">${transaction.event}</p>
+                    </div>
                 </div>
-                <div class="rectext flex">
-                    <p class="reason">${transaction.name}</p>
-                    <p class="show">${transaction.amount.toFixed(2)}</p>
-                    <p class="red show">${transaction.event}</p>
-                </div>
-            </div>
-        `);
-
+            `);
+    
             return newBalance;
         }
         $(".warn").text("Pls check your input");
@@ -400,21 +418,30 @@ function attachAccountListeners() {
 
             let newBalance = (currentBalance - inputedfund).toFixed(2);
             account.balance = newBalance;
-            let contactsList = $(".alltrs");
             let reson = valuenet + " | " + valueSent
-            let transaction = new account.transaction(reson, inputedfund, "Debit", accountId);
-            contactsList.prepend(`
-            <div class="record flex font4">
-                <div class="recimg">
-                    <img src="img/money-bill-solid.svg" alt="">
+            account.addTransaction(
+                reson,
+                inputedfund,              
+                "Credit",
+                account.accountnumber
+            );
+        
+            // Update the UI to reflect the new transaction
+            let transaction = account.transactions[account.transactionId];
+            let contactsList = $(".alltrs");
+            contactsList.append(`
+                <div class="record flex font4">
+                    <div class="recimg">
+                        <img src="img/money-bill-solid.svg" alt="">
+                    </div>
+                    <div class="rectext flex">
+                        <p class="reason">${transaction.name}</p>
+                        <p class="show">${transaction.amount.toFixed(2)}</p>
+                        <p class="green show">${transaction.event}</p>
+                    </div>
                 </div>
-                <div class="rectext flex">
-                    <p class="reason">${transaction.name}</p>
-                    <p class="show">${transaction.amount.toFixed(2)}</p>
-                    <p class="red show">${transaction.event}</p>
-                </div>
-            </div>
-        `);
+            `);
+    
 
             return newBalance;
         }
@@ -494,6 +521,96 @@ function attachAccountListeners() {
         }
     })
 
+    $(".userbdy").on("click", ".copy", function () {
+        const account = bankAccount.findAccount(this.id);
+        let ToCopy = account.accountnumber
+        let textToCopy = ToCopy;
+        let tempTextarea = $("<textarea>");
+        tempTextarea.val(textToCopy);
+        $("body").append(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+        $(tempTextarea).remove();
+    
+      });
+
+    $(".userbdy").on('click', '.userprofile', function () {
+        $(".profile").slideToggle()
+    })
+    $(".userbdy").on('click', '.def', function () {
+        let control = $(".def").index(this);
+        let accountnom = $(this).closest(".bginfo").find(".acctnum").text();
+        switch (control) {
+            case 0:
+                $(".boloc").slideToggle();
+                $(".ttr").slideUp();
+                $(".hide1").slideUp();
+                $(".hide3").slideUp();
+                $(".hide2").slideUp();
+                $(".hide4").slideUp();
+                $("marquee").show();
+                break;
+            case 1:
+                $(".boloc").slideUp();
+                $(".login-page").show()
+                $(".userinterface").slideUp();
+                $(".login").show()
+                $(".signup").hide()
+                $(".ttr").slideUp();
+                $(".hide1").slideUp();
+                $(".hide3").slideUp();
+                $(".hide2").slideUp();
+                $(".hide4").slideUp();
+                $("marquee").show();
+                break;
+            case 2:
+                $(".boloc").slideUp();
+                $(".hide4").slideUp();
+                $(".ttr").slideUp();
+                $(".hide1").fadeIn();
+                $(".hide3").slideUp();
+                $(".hide2").slideUp();
+                $("marquee").show();
+                $(".acctnuminput").val(accountnom);
+                break;
+            case 3:
+                $(".boloc").slideUp();
+                $(".hide1").slideUp();
+                $(".hide2").slideUp();
+                $(".hide3").slideUp();
+                $(".hide4").fadeIn();
+                $("marquee").hide();
+                $(".ttr").slideUp();
+                $(".acctnuminput").val(accountnom);
+                break;
+            case 4:
+                $(".boloc").slideUp();
+                $(".ttr").fadeIn();
+                $(".hide4").slideUp();
+                $(".hide1").slideUp();
+                $(".hide3").slideUp();
+                $(".hide2").slideUp();
+                $("marquee").show();
+                break;
+            case 5:
+                $(".boloc").slideUp();
+                $(".ttr").slideUp();
+                $(".hide1").slideUp();
+                $(".hide3").slideUp();
+                $(".hide2").fadeIn();
+                $(".hide4").slideUp();
+                $("marquee").show();
+                break;
+            default:
+                $(".boloc").slideUp();
+                $(".hide3").fadeIn();
+                $(".hide2").slideUp();
+                $(".hide1").slideUp();
+                $(".ttr").slideUp();
+                $(".hide4").slideUp();
+                $("marquee").show();
+        }
+    })
     function block() {
         $(".block").addClass("blocked").on('click.blocked', function (event) {
             event.preventDefault();
@@ -525,28 +642,171 @@ function attachAccountListeners() {
         $(".datamount").val("");
         $("marquee").show();
     })
-    $(".userbdy").on('click', 'moneybut', function () {
-        block()
-    })
+
+    $(".userbdy").on('click', 'button', function () {
+        const account = bankAccount.findAccount(this.id);
+        let accountname = $(`#${account.id}`).find('.username').text();
+        let inputedfund = parseFloat($(`#${account.id}.credit`).val());
+
+
+        $(".usernameinput").val(accountname);
+
+        account.addTransaction(
+            reson,
+            inputedfund,              
+            "Credit",
+            account.accountnumber
+        );
+      
+        let transaction = new Transaction(
+            account.firstName,   
+            inputedfund,                 
+            "Credit",   
+            account.accountnumber
+        );
+        account.addTransaction(transaction);
+        console.log(transaction)
+        showtrans(transaction)
+
+    });
+
 }
+
 
 
 let bankAccount = new BankAccount();
 
 
+
+function displayAccount(accountId) {
+    const account = bankAccount.findAccount(accountId);  // Use accountId directly
+    if (!account) {
+        warningTimer()
+        $(".warnimg2").html('<img src="img/blankinvalid.png" alt="">');
+        $(".warn2").text("Account does not exsist");
+        return;
+    }
+
+    const password = $('.password').val().trim();
+    const emailAddress = $('.emaillogin').val().trim();
+
+    if (account.password === password && account.emailAddress === emailAddress) {
+        console.log("Valid login");
+        showAccount(account.id);
+        loading();
+    } else {
+        warningTimer()
+        $(".warnimg2").html('<img src="img/cahh.jpg" alt="">');
+        $(".warn2").text("Check input, invalid details");
+    }
+}
+
 $(document).ready(function () {
+    $(".alinputin").on('input', function () {
+        let chose = $(".alinputin").index(this)
+
+        switch (chose) {
+            case 0:
+                const allinput = $(".alinputin").eq(chose).val().trim()
+                let long = allinput.length
+                let realLength = 10
+                let rule = long > realLength
+                if (rule) {
+                    $(".alinputin").eq(chose).val(allinput.slice(0, realLength))
+                }
+
+                break;
+            case 1:
+                const allinput2 = $(".alinputin").eq(chose).val().trim()
+                let long2 = allinput2.length
+                let realLength2 = 10
+                let rule2 = long2 > realLength2
+                if (rule2) {
+                    $(".alinputin").eq(chose).val(allinput2.slice(0, realLength2))
+                }
+                break;
+            case 2:
+                const allinput3 = $(".alinputin").eq(chose).val().trim()
+                let long3 = allinput3.length
+                let realLength3 = 10
+                let rule3 = long3 > realLength3
+                if (rule3) {
+                    $(".alinputin").eq(chose).val(allinput3.slice(0, realLength3))
+                }
+                break;
+            case 3:
+                const allinput4 = $(".alinputin").eq(chose).val().trim()
+                let long4 = allinput4.length
+                let realLength4 = 10
+                let rule4 = long4 > realLength4
+                if (rule4) {
+                    $(".alinputin").eq(chose).val(allinput4.slice(0, realLength4))
+                }
+                break;
+            case 4:
+                const allinput5 = $(".alinputin").eq(chose).val().trim()
+                let long5 = allinput5.length
+                let realLength5 = 10
+                let rule5 = long5 > realLength5
+                if (rule5) {
+                    $(".alinputin").eq(chose).val(allinput5.slice(0, realLength5))
+                }
+                break;
+            case 5:
+                const allinput6 = $(".alinputin").eq(chose).val().trim()
+                let long6 = allinput6.length
+                let realLength6 = 15
+                let rule6 = long6 > realLength6
+                if (rule6) {
+                    $(".alinputin").eq(chose).val(allinput6.slice(0, realLength6))
+                }
+                break;
+            case 6:
+                const allinput7 = $(".alinputin").eq(chose).val().trim()
+                let long7 = allinput7.length
+                let realLength7 = 15
+                let rule7 = long7 > realLength7
+                if (rule7) {
+                    $(".alinputin").eq(chose).val(allinput7.slice(0, realLength7))
+                }
+                break;
+            case 7:
+                const allinput8 = $(".alinputin").eq(chose).val().trim()
+                let long8 = allinput8.length
+                let realLength8 = 6
+                let rule8 = long8 > realLength8
+                if (rule8) {
+                    $(".alinputin").eq(chose).val(allinput8.slice(0, realLength8))
+                }
+                break;
+            default:
+                const allinput9 = $(".alinputin").eq(chose).val().trim()
+                let long9 = allinput9.length
+                let realLength9 = 15
+                let rule9 = long9 > realLength9
+                if (rule9) {
+                    $(".alinputin").eq(chose).val(allinput9.slice(0, realLength9))
+                }
+        }
+
+    })
+
     attachAccountListeners();
     $(".continue").submit(function (event) {
         event.preventDefault();
-        loading()
+        $(".login").show()
+        $(".signup").hide()
+
+
         // $(".login-page").slideUp();
 
-        const inputtedFirstName = $(".firstname").val();
-        const inputtedLastName = $(".lastname").val();
-        const inputtedPhoneNumber = $(".phonenumber").val();
-        const inputtedEmailAddress = $(".emailaddress").val();
-        const inputtedCountry = $(".country").val();
-        const inputtedPassword = $(".country").val();
+        const inputtedFirstName = $(".firstname").val().trim();
+        const inputtedLastName = $(".lastname").val().trim();
+        const inputtedPhoneNumber = $(".phonenumber").val().trim();
+        const inputtedEmailAddress = $(".mail").val().trim();
+        const inputtedCountry = $("#countries").val().trim();
+        const inputtedPassword = $(".passwordtocreate").val().trim();
+        const accountNumer = generateAccountNumber()
         let num = 0
         const currentBalance = num.toFixed(2)
         const point = parseFloat("0")
@@ -555,16 +815,26 @@ $(document).ready(function () {
         $(".firstname").val("");
         $(".lastname").val("");
         $(".phonenumber").val("");
-        $(".emailaddress").val("");
-        $(".homeaddress").val("");
+        $(".mail").val("");
+        $("#countries").val("");
+        $(".passwordtocreate").val("")
 
-        let newAccount = new Account(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedCountry, inputtedPassword, currentBalance, point);
+
+        let newAccount = new Account(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedCountry, inputtedPassword, currentBalance, point,accountNumer);
         bankAccount.AddAcount(newAccount);
-
+        $(".did").text(newAccount.id);
+        $(".acctid").val(newAccount.id);
         showAccount(newAccount.id)
+        // console.log(newAccount.id.password)
+        // console.log(newAccount)
+
     });
-});
-window.onload = function () {
+    $(".loginin").submit(function (refresh) {
+        refresh.preventDefault();
+        const accountId = $(this).find('.acctid').val().trim();
+        displayAccount(accountId);
+        console.log("Login attempted");
+    });
 
     $(".signupin").submit(function (refresh) {
         refresh.preventDefault()
@@ -572,6 +842,10 @@ window.onload = function () {
         $(".signupin").slideUp()
 
     })
+});
+window.onload = function () {
+
+
     $(".signto").click(function () {
         $(".signup").show()
         $(".login").hide()
@@ -582,54 +856,9 @@ window.onload = function () {
         $(".login").show()
         $(".signup").hide()
     })
-    $(".def").click(function () {
-        let control = $(".def").index(this);
-        switch (control) {
-            case 0:
-                $(".boloc").slideToggle();
-                $(".ttr").slideUp();
-                $(".hide1").slideUp();
-                $(".hide3").slideUp();
-                $(".hide2").slideUp();
-                break;
-            case 1:
-                $(".boloc").slideUp();
-                $(".login-page").show()
-                $(".userinterface").slideUp();
-                $(".ttr").slideUp();
-                $(".hide1").slideUp();
-                $(".hide3").slideUp();
-                $(".hide2").slideUp();
-                break;
-            case 2:
-                $(".boloc").slideUp();
-                $(".hide1").fadeIn();
-                $(".hide2").slideUp();
-                $(".hide3").slideUp();
-                $(".ttr").slideUp();
-                break;
-            case 3:
-                $(".boloc").slideUp();
-                $(".ttr").fadeIn();
-                $(".hide1").slideUp();
-                $(".hide3").slideUp();
-                $(".hide2").slideUp();
-                break;
-            case 4:
-                $(".boloc").slideUp();
-                $(".ttr").slideUp();
-                $(".hide1").slideUp();
-                $(".hide3").slideUp();
-                $(".hide2").fadeIn();
-                break;
-            default:
-                $(".boloc").slideUp();
-                $(".hide3").fadeIn();
-                $(".hide2").slideUp();
-                $(".hide1").slideUp();
-                $(".ttr").slideUp();
-        }
+    $(".switchback").click(function () {
+        $(".continue").slideUp()
+        $(".signupin").slideDown()
     })
-
 
 }
