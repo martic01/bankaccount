@@ -581,6 +581,11 @@ font-size: 19px;
     font-size: 40px;
     font-weight: 500;
 }
+.amount .star {
+    font-size: 40px;
+    font-weight: 500;
+    display: none;
+}
 
 .imgamount {
     height: 100%;

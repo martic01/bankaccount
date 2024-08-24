@@ -128,7 +128,7 @@ function showtrans(transaction) {
 }
 function showAccount(accountId) {
     const account = bankAccount.findAccount(accountId);
-    $(".userinterface").show()
+    sentTimer()
     let page = $(".userbdy");
     page.empty();
     page.append(`
@@ -169,7 +169,8 @@ function showAccount(accountId) {
                             <img src="img/naira-sign-solid.svg" alt="">
                         </div>
                         <p class="currentamount">${account.balance}</p>
-                        <div id="${account.id}" class="imghide imagelg">
+                        <p class="star">**********</p>
+                        <div id="${account.id}" class="imghide imagelg eye">
                             <img  src="img/eye-regular (1).svg" alt="">
                         </div>
                     </div>
@@ -287,7 +288,7 @@ function attachAccountListeners() {
         // Update the UI to reflect the new transaction
         let transaction = account.transactions[account.transactionId];
         let contactsList = $(".alltrs");
-        contactsList.append(`
+        contactsList.prepend(`
             <div class="record flex font4">
                 <div class="recimg">
                     <img src="img/money-bill-solid.svg" alt="">
@@ -326,14 +327,14 @@ function attachAccountListeners() {
         account.addTransaction(
             account.firstName,
             inputedfund,
-            "Credit",
+           "Debit" ,
             account.accountnumber
         );
 
         // Update the UI to reflect the new transaction
         let transaction = account.transactions[account.transactionId];
         let contactsList = $(".alltrs");
-        contactsList.append(`
+        contactsList.prepend(`
                 <div class="record flex font4">
                     <div class="recimg">
                         <img src="img/money-bill-solid.svg" alt="">
@@ -341,7 +342,7 @@ function attachAccountListeners() {
                     <div class="rectext flex">
                         <p class="reason">${transaction.name}</p>
                         <p class="show">${transaction.amount.toFixed(2)}</p>
-                        <p class="green show">${transaction.event}</p>
+                        <p class="red show">${transaction.event}</p>
                     </div>
                 </div>
             `);
@@ -377,14 +378,14 @@ function attachAccountListeners() {
             account.addTransaction(
                 reson,
                 inputedfund,
-                "Credit",
+                "Debit",
                 account.accountnumber
             );
 
             // Update the UI to reflect the new transaction
             let transaction = account.transactions[account.transactionId];
             let contactsList = $(".alltrs");
-            contactsList.append(`
+            contactsList.prepend(`
                 <div class="record flex font4">
                     <div class="recimg">
                         <img src="img/money-bill-solid.svg" alt="">
@@ -392,7 +393,7 @@ function attachAccountListeners() {
                     <div class="rectext flex">
                         <p class="reason">${transaction.name}</p>
                         <p class="show">${transaction.amount.toFixed(2)}</p>
-                        <p class="green show">${transaction.event}</p>
+                        <p class="red show">${transaction.event}</p>
                     </div>
                 </div>
             `);
@@ -431,14 +432,14 @@ function attachAccountListeners() {
             account.addTransaction(
                 reson,
                 inputedfund,
-                "Credit",
+                "Debit",
                 account.accountnumber
             );
 
             // Update the UI to reflect the new transaction
             let transaction = account.transactions[account.transactionId];
             let contactsList = $(".alltrs");
-            contactsList.append(`
+            contactsList.prepend(`
                 <div class="record flex font4">
                     <div class="recimg">
                         <img src="img/money-bill-solid.svg" alt="">
@@ -446,7 +447,7 @@ function attachAccountListeners() {
                     <div class="rectext flex">
                         <p class="reason">${transaction.name}</p>
                         <p class="show">${transaction.amount.toFixed(2)}</p>
-                        <p class="green show">${transaction.event}</p>
+                        <p class="red show">${transaction.event}</p>
                     </div>
                 </div>
             `);
@@ -532,6 +533,10 @@ function attachAccountListeners() {
 
     $(".userbdy").on('click', '.userprofile', function () {
         $(".profile").slideToggle()
+    })
+    $(".userbdy").on('click', '.eye', function () {
+        $(".currentamount").slideToggle()
+        $(".star").slideToggle()
     })
     $(".userbdy").on('click', '.def', function () {
         let control = $(".def").index(this);
